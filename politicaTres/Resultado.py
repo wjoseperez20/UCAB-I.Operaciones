@@ -1,6 +1,5 @@
 import Operaciones
 
-
 class Resultado:
     def __init__(self, mes, inicial, compra10):
         self.__mes = mes
@@ -16,34 +15,34 @@ class Resultado:
 
     def Get_Random1(self):
         return self.__numeroRadom1
-
+    
     def Get_Random2(self):
         return self.__numeroRadom2
-
+    
     def Get_PrimeraDemanda(self):
         return self.__primeraDemanda
-
+    
     def Get_SegundaDemanda(self):
         return self.__segundaDemanda
-
+    
     def Get_Mes(self):
         return self.__mes
-
+    
     def Get_RevistaInicial(self):
         return self.__revistaInicial
-
+    
     def Get_CompraDia10(self):
         return self.__compraDia10
-
+    
     def Get_Ganancia(self):
         return self.__ganancia
-
+    
     def Get_SobranteDia10(self):
         return self.__sobranteDia10
 
     def Get_SobranteFinal(self):
         return self.__sobranteFinal
-
+    
     def __ObtenerPrimeraDemanda(self):
         random = self.__numeroRadom1
         if random < 0.05:
@@ -60,7 +59,7 @@ class Resultado:
             self.__primeraDemanda = 10
         else:
             self.__primeraDemanda = 11
-
+    
     def __ObtenerSegundaDemanda(self):
         random = self.__numeroRadom2
         if random < 0.15:
@@ -73,38 +72,36 @@ class Resultado:
             self.__segundaDemanda = 7
         else:
             self.__segundaDemanda = 8
-
+    
     def __CalcularGanancia(self):
-        inversion = (self.__revistaInicial * 1.5) + (self.__compraDia10 * 1.2)
+        inversion = (self.__revistaInicial*1.5) + (self.__compraDia10*1.2)
         montoVendido = 0
         montoSobrante10 = 0
         montoSobranteTotal = 0
         if self.__revistaInicial >= self.__primeraDemanda:
-            montoVendido += self.__primeraDemanda * 2
+            montoVendido += self.__primeraDemanda*2
             self.__sobranteDia10 = self.__revistaInicial - self.__primeraDemanda
-            montoSobrante10 = self.__sobranteDia10 * 0.9
+            montoSobrante10 = self.__sobranteDia10*0.9
 
             if self.__compraDia10 >= self.__segundaDemanda:
-                montoVendido += self.__segundaDemanda * 2
+                montoVendido += self.__segundaDemanda*2
                 self.__sobranteFinal = self.__compraDia10 - self.__segundaDemanda
-                montoSobranteTotal = self.__sobranteFinal * 0.6
+                montoSobranteTotal = self.__sobranteFinal*0.6
             else:
-                montoVendido += self.__compraDia10 * 2
+                montoVendido += self.__compraDia10*2
         else:
-            montoVendido += self.__revistaInicial * 2
+            montoVendido += self.__revistaInicial*2
 
             if self.__compraDia10 >= self.__segundaDemanda:
-                montoVendido += self.__segundaDemanda * 2
+                montoVendido += self.__segundaDemanda*2
                 self.__sobranteFinal = self.__compraDia10 - self.__segundaDemanda
-                montoSobranteTotal = self.__sobranteFinal * 0.6
+                montoSobranteTotal = self.__sobranteFinal*0.6
             else:
-                montoVendido += self.__compraDia10 * 2
+                montoVendido += self.__compraDia10*2
 
         self.__ganancia = montoVendido + montoSobrante10 + montoSobranteTotal - inversion
 
+        
+
     def __str__(self):
-        return 'ini=' + str(self.__revistaInicial) + ';mes=' + str(self.__mes) + ';rand1=' + str(
-            self.__numeroRadom1) + ';demanda10=' + str(self.__primeraDemanda) + ';sobrante10=' + str(
-            self.__sobranteDia10) + ';compra10=' + str(self.__compraDia10) + ';rand2=' + str(
-            self.__numeroRadom2) + ';demanda20=' + str(self.__segundaDemanda) + ';sobrante=' + str(
-            self.__sobranteFinal) + ';ganancia=' + str(self.__ganancia) + ";"
+        return 'ini='+str(self.__revistaInicial)+';mes='+str(self.__mes)+';rand1='+str(self.__numeroRadom1)+';demanda10='+str(self.__primeraDemanda)+';sobrante10='+str(self.__sobranteDia10)+';compra10='+str(self.__compraDia10)+';rand2='+str(self.__numeroRadom2)+';demanda20='+str(self.__segundaDemanda)+';sobrante='+str(self.__sobranteFinal)+';ganancia='+str(self.__ganancia)+";"     
