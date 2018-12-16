@@ -1,6 +1,5 @@
 import Operaciones
 
-
 class Resultado:
     def __init__(self, mes, inicial):
         self.__mes = mes
@@ -14,28 +13,28 @@ class Resultado:
 
     def Get_Random1(self):
         return self.__numeroRadom1
-
+    
     def Get_Random2(self):
         return self.__numeroRadom2
-
+    
     def Get_PrimeraDemanda(self):
         return self.__primeraDemanda
-
+    
     def Get_SegundaDemanda(self):
         return self.__segundaDemanda
-
+    
     def Get_Mes(self):
         return self.__mes
-
+    
     def Get_RevistaInicial(self):
         return self.__revistaInicial
-
+    
     def Get_Ganancia(self):
         return self.__ganancia
-
+    
     def Get_SobranteFinal(self):
         return self.__sobranteFinal
-
+    
     def __ObtenerPrimeraDemanda(self):
         random = self.__numeroRadom1
         if random < 0.05:
@@ -52,7 +51,7 @@ class Resultado:
             self.__primeraDemanda = 10
         else:
             self.__primeraDemanda = 11
-
+    
     def __ObtenerSegundaDemanda(self):
         random = self.__numeroRadom2
         if random < 0.15:
@@ -65,24 +64,22 @@ class Resultado:
             self.__segundaDemanda = 7
         else:
             self.__segundaDemanda = 8
-
+    
     def __CalcularGanancia(self):
-        inversion = self.__revistaInicial * 1.5
+        inversion = self.__revistaInicial*1.5
         montoVendido = 0
 
         demandaTotal = self.__primeraDemanda + self.__segundaDemanda
-
+    
         if self.__revistaInicial >= demandaTotal:
-            montoVendido = demandaTotal * 2
+            montoVendido = demandaTotal*2
             self.__sobranteFinal = self.__revistaInicial - demandaTotal
-            montoSobrante = self.__sobranteFinal * 0.6
+            montoSobrante = self.__sobranteFinal*0.6
             self.__ganancia = montoVendido + montoSobrante - inversion
         else:
             montoVendido = self.__revistaInicial * 2
             self.__ganancia = montoVendido - inversion
+        
 
     def __str__(self):
-        return 'ini=' + str(self.__revistaInicial) + ';mes=' + str(self.__mes) + ';rand1=' + str(
-            self.__numeroRadom1) + ';demanda10=' + str(self.__primeraDemanda) + ';rand2=' + str(
-            self.__numeroRadom2) + ';demanda20=' + str(self.__segundaDemanda) + ';sobrante=' + str(
-            self.__sobranteFinal) + ';ganancia=' + str(self.__ganancia) + ";"
+        return 'ini='+str(self.__revistaInicial)+';mes='+str(self.__mes)+';rand1='+str(self.__numeroRadom1)+';demanda10='+str(self.__primeraDemanda)+';rand2='+str(self.__numeroRadom2)+';demanda20='+str(self.__segundaDemanda)+';sobrante='+str(self.__sobranteFinal)+';ganancia='+str(self.__ganancia)+";"     
