@@ -111,7 +111,7 @@ class Simulacion:
         i = 1
 
         for resultado in self.__listaPromedios:
-            if self.__gananciaMayor == resultado[1]:
+            if self.__gananciaMayor[1] == resultado[1]:
                 cell_format = self.__cell_format_max
             else:
                 cell_format = self.__cell_format
