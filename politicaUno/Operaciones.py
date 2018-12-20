@@ -1,7 +1,5 @@
 import random
-import time
 import xlsxwriter
-import numpy as np
 import matplotlib.pyplot as plt
 
 def GenerarRandom():
@@ -14,7 +12,6 @@ def OrdenarLista(diccionario):
 
 def ImprimirGanancias(listaGanancias):
 
-    timestamp = int(round(time.time() * 1000))
     workbook = xlsxwriter.Workbook("output/ListaGanancias_PoliticaUno.xlsx")
     worksheet_corridas = workbook.add_worksheet("Ganancias Totales")
     cell_format_header = workbook.add_format({'center_across':True, 'bold':True, 'border':True})
