@@ -31,18 +31,24 @@ def IniciarPrograma():
             print('Ingrese un rango valido.')
         else:
             CalculoSimulacion(revistaInicial, revistaFinal, iteraciones)
-    except: 
+    except Exception as e: 
         print("Ha ocurrido un error por favor intente nuevamente")
+        print("Detalle del error:", e)
 
-try:
-    shutil.rmtree("output")
-except:
-    os.mkdir("output")
-    print("Por favor cierra todos los archivos excel antes de ejecutar nuevamente el programa y asegurese que exista la carpeta output")
-else:
-    os.mkdir("output")
+error = False
+folder = 'output/'
+for the_file in os.listdir(folder):
+    file_path = os.path.join(folder, the_file)
+    try:
+        if os.path.isfile(file_path):
+            os.unlink(file_path)
+    except Exception:
+        if error is False:
+            print("El programa no ha podido eliminar todos los archivos excel, por favor cierrelos e intente nuevamente.")
+        error = True
+        
+if error is False:
     IniciarPrograma()
-
 
 
 

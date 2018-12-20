@@ -1,6 +1,7 @@
 import random
 import time
 import xlsxwriter
+import matplotlib.pyplot as plt
 
 def GenerarRandom():
     numero = round(random.random(),4)
@@ -11,7 +12,7 @@ def OrdenarLista(diccionario):
 
 def ImprimirGanancias(listaGanancias):
     timestamp = int(round(time.time() * 1000))
-    workbook = xlsxwriter.Workbook("output/GananciasTotales_PoliticaDos.xlsx")
+    workbook = xlsxwriter.Workbook("output/ListaGanancias_PoliticaDos.xlsx")
     worksheet_corridas = workbook.add_worksheet("Ganancias Totales")
     cell_format_header = workbook.add_format({'center_across':True, 'bold':True, 'border':True})
     cell_format_header.set_border(style=2)
@@ -30,3 +31,16 @@ def ImprimirGanancias(listaGanancias):
         row += 1
 
     workbook.close()
+    ImprimirBoxPlot(listaGanancias)
+
+def ImprimirBoxPlot(listaGanancias):
+    data = []
+    for resultado in listaGanancias:
+        data.append(resultado[1])
+    fig, ax = plt.subplots()
+    titulo = "Politica 2 - "+str(len(listaGanancias))+" Simulaciones"
+    ax.set_title(titulo)
+    ax.boxplot([data])
+    fig.savefig("output/BoxPlot-Politica2.png")   # save the figure to file
+    plt.close(fig)
+    print('Simulación de la politica 2 finalizada con éxito, los resultados se encuentran en la carpeta output.')        
